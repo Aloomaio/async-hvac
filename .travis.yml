@@ -13,15 +13,20 @@ matrix:
 install:
 - scripts/install-vault-${VAULT_BRANCH}.sh
 - pip install tox
+- echo [distutils]                                  > ~/.pypirc
+- echo index-servers =                             >> ~/.pypirc
+- echo "  pypi"                                    >> ~/.pypirc
+- echo [pypi]                                      >> ~/.pypirc
+- echo username=$PYPI_USERNAME                     >> ~/.pypirc
+- echo password=$PYPI_PASSWORD                     >> ~/.pypirc
+- chmod 600 ~/.pypirc
 script:
 - export PATH=$HOME/bin:$PATH
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then make package ; else make test ; fi
 deploy:
-  provider: pypi
-  user: lionelz
-  password:
-    secure: ksfd3P93cm5IZYk5sWi4xWkmX+vOrxmc6qZfFto9IlDfitRKuOdI2PSuqe5PNdBBitu3F8qwJzVJVYfwc4CqvzTyyBP/BU/ikO99yomVy5nuOV6ex29cKYCXuUGsCPSzrME5bifhDgyvj+PLLxGuRrRbuOtab4Vn2ibgPybkg60wcgke5GPm284eOHEcQAC3k8TqZjydY7Q+WM6GmiFzAeXqoiNmudRquIPVnV0Ucz4w8Zu4jrfX+DF2/DJpFINDuAebCKATZfDy3OVJok3pCd32tt1vHfxVu0H1J6jzrMAj3+T+0W81VJAGyirHz9LDCRrSM1845oBPatvpO5XMH5U4pMyItDSqSe3pzn07U4Mu2gcHuObNXO++Whmn5w/yr2bWdclk0Pn8rYhqmYMV4XUwGfCN/txnRXBVLORr/+78sumTsxU3Pvvpnfaghdgi/a6Oajj6082v5KdCdJ1jnsYhjKNza1wR2UOTUPk7eNwN7H6RFePtxitBFll+n8Hyjp9ttZIXzyQAHXwlJ3bFHeSBpjrWZO+SdK4ePfJ2UcSo7rAR/vbQ/KxMD/jOx131YQRKnf6/1RPhofZrfMBu6/bUys7VUFDQCamMSosujwjq7yIbUUqwLPKsgfafIEgLgaDqHGi95mCaeX5691Gv5bWCwPh3IKg3HWLN6A7yuAU=
+  provider: script
+  script: python setup.py sdist upload -r pypi
   on:
     tags: true
-    distributions: sdist bdist_wheel
     repo: Aloomaio/async-hvac
+    condition: $RELEASE == "yes"
