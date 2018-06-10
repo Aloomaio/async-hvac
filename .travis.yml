@@ -17,13 +17,12 @@ script:
 - export PATH=$HOME/bin:$PATH
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then make package ; else make test ; fi
 deploy:
-  skip_cleanup: true
   provider: pypi
   user: lionelz
+  password:
+    secure: b+j7dbF0h8Inev5sTHGENW5Z2/fjIsNHxOxVb+XruZeDnGPTw6IUdOUp/zCzfQq00VZpVT+CN/lSCnQwUYjIGsXi5AhDK1pbOKRkgHFcKf/FvTxia17ErUV0Uu3VaVEFvkPuqeD60+GClIVfgrarXhFu02+lx2nW1uwO7eJpexyGxbwqtL6AIM9uhZovfYoVru4cyu/dNWAQLKAKUUg/oNWyt2sM3LNM9QG6kVmH3FBHi3931K+65rftDiRAgbosPzjU1apvd0Sb9MTFGlACM/AKr6STLZWhmu32Pe9n+vI7Rr9en97XyYGIepKZSvIAfa4Qr5y4al2k7Fa5YY3Trb9zV0yw6J1TdMQv7LqimgjoJIdsYqpbgqWMTOLXWmQk0oV5SwI59nQ0V+PrbZDKuQTcYjnHUTLHIATco8tj1vuVKgSotPFuaPVV9SzaNjJ+wfhb+fVoLu3hBf82etCeLlDb+2qFMrNyOH3NkI+zXyBdx5WQw09EFXcEc9wFfD9X8RDzBLs327RDX7kFf7f0A/+Pn/2r9QzL/NL88Sk+aREmzhQx4vFpBmweYXe6e48M244VwB+gsMvmEsOWeFFkZJW/J4Ozx4mmvbOxblrjRtucg2VzybCaBfA1RmF2rLq5SIWqJGmcbaBeRG4KgUeHaX8ZI7jpIjQ2XCgj/Qf5hWA=
   on:
     tags: true
     all_branches: true
     repo: Aloomaio/async-hvac
     condition: $RELEASE == "yes"
-  password:
-    secure: bB2I6X8iSbq9FbSymYp5DiFVPylnc2nhcqAAbEOmUEKU/KukjZe5FxaiRFyXUMCioPxXMgEIK0j/qm1ZoBff1iQIlD6zPKngSrDFxtKpVQuUlAoAXN9Zt+Maw7/OVm19k1DkNxizrcbuik6RJdo3PFpRXro+m1tyxQhFA1chmfHZGCNMi2xMp3IygAY8YBcgej6gSZsWS31qopYg9hAwh74QGnuUf3hgkYo4cIRrp+F3CMELtRsORAOUqsDGu2ehHy/2tG+UMlOnEsBgpwwSsRGTIxgurLdrfP5BOTCzp09AvRNMup7J9pAUmg5QM7ok2wpSn0NImHe09NKd18Ki1PopkGA0mLIFApFyt/2qDcKZj6WOG327r3ef/bCtWvabwuhMdUfDnyzYUEfj0heHsrJ02ww0pBDJqM4CChy7UwsMvrDG+FCRGtdOXMZOW6psi9XMZG4N4VskH9igUouVDu33x1dklTMv+c4jSB4TP1XrzJSI8R9q/v60PZpZj3GPf1gPCgkdsILKabNvI0oMI0ocmP0KJ4CbLGfl4UtGzNJ/rfhVLM6R/m+SBdEZLe/Rr1jl/NSWy6uKjwq1GSpTCmZ03iwg/XSnav+k33hHhgEHjLpVcRbDPfetL5YU6btAE8iqq9D5YJwtR9PKrig5cG8XEl/JT73tI81AFrq6X1c=
