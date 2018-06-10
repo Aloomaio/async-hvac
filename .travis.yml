@@ -3,8 +3,6 @@ sudo: false
 language: python
 matrix:
   include:
-  - python: '2.7'
-    env: TOXENV=py27 VAULT_BRANCH=release
   - python: '3.6'
     env: TOXENV=py36 VAULT_BRANCH=release RELEASE=yes
   - python: '3.6'
@@ -21,11 +19,11 @@ script:
 deploy:
   skip_cleanup: true
   provider: pypi
-  user: otakup0pe
+  user: lionelz
   on:
     tags: true
     all_branches: true
-    repo: ianunruh/hvac
+    repo: aloomaio/async-hvac
     condition: $RELEASE == "yes"
   password:
-    secure: MDKviWOPUrxuBAClPjh1WH/FtBj9PIDBZ1LLQFWgBsvQaauCpqN6p9M6ysWT/20Ou3AePjFJJ2KA0oYU7UW+qmXqCGyvYBiIzMXvDcjhBK60UOhFtzMDq3rEwVDCIWRfk1zCxpQYiw2Eq2T/E/wdtfUqwVVWRCL4tdCTXv48EuA=
+    secure: J8Qmm22cbaf5f5cKK0pkxMtuQdaK6NI/toQYzQzve1qfdbCTfB4asfliWyWVGguYrJpOMfuzTIOHV3DR5hMbdLYdw2b4+JQW5Gchl2al6rxbpu7R3SDgh+4hOD4EV0LFI46/1xxETTaEHYM/8gmfJlbM/9E5oiMoWyIDEvUxMe1stiS3/J2ABJQDXAxbQuNJ+9lpkXMdVVuGFB8H9SBxxzpYf/GnHYFrgvoRRZJnKRbsc3ZxbFyurX7xD1opbxnTy1n6SPaX13gDDypqdLVn55kr2V8AHESaz9f3Rc9C5IEeEG9qIuMXxOBS73NSJIr5NdoWBucuZ+gmvBLwd9AcfEzRTv0AcIJwprOhzq+Wv+auEAbgA4kDxQMXPtEuz/fnK7gvLR2wsBziJLJFV/EtclJIUqR4UmX20j2mUv4RVbYgWR7W576tXtcFs1UGQpMEqq+EQf0h6L2VkmsmWkEVOkNMmMFjkGpfdS7LlHQJZTuYIjiuk8l5at7tkZZPY6NpwRv/tPbe81Mbt9c8amHaO/3u8DDnvoZr073PlVpIAgVYI6w7l0VCKi7/6n29BWiAV57tXfxsTb5MeB09TqUXn9dXm0YSjD8x5ct0Km0fpdMSTgWuJVdSI6mIPDmQwiA02I8etJbMK9tnP8xG1SSSmtY2Q1+Ul7x3VrB5utLdInY=
